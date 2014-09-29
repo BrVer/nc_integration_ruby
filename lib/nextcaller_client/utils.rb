@@ -29,7 +29,7 @@ module NextcallerClient
       end
     end
 
-    #Prepare url from path and params
+    #Prepare url
     def self.prepare_url(path, url_params={})
       url = '%s%s' % [FULL_URL, path]
       unless url.end_with?('/')
