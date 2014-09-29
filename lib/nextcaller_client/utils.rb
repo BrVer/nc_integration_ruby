@@ -3,7 +3,7 @@ module NextcallerClient
   module Utils
 
     def self.prepare_json_data(data)
-      unless value.is_a? Hash
+      unless data.is_a? Hash
         raise ArgumentError, 'Data should be a hash.'
       end
       data.to_json
