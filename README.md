@@ -47,7 +47,7 @@ Or install it yourself as:
     resp = client.get_by_phone(phone, response_format, debug)
     
     # arguments:
-    #   phone           -- 10 digits phone, str ot int, required
+    #   phone           -- 10 digits phone, str or int, required
     #   response_format -- response format [json|xml] (default json)
     #   debug           -- boolean (default false)
 

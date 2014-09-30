@@ -29,7 +29,7 @@ module NextcallerClient
       end
     end
 
-    #Prepare url
+    #Prepare url from path and params
     def self.prepare_url(path, url_params={})
       url = '%s%s' % [FULL_URL, path]
       unless url.end_with?('/')
@@ -37,7 +37,7 @@ module NextcallerClient
       end
       unless url_params.empty?
         url_params_str = url_params.collect { |k, v| "#{CGI::escape(k.to_s)}=#{CGI::escape(v.to_s)}" }.join('&')
-        url += '?' + url_params_str
+        url += "?#{url_params_str}"
       end
       url
     end

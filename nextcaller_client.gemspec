@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors       = ["Dmitry Vlasov"]
   s.email         = ["d.vlasov.work@gmail.com"]
   s.summary       = 'A Ruby wrapper around the Nextcaller API.'
-  s.description   = 'A Ruby wrapper around the Nextcaller API. See ttps://dev.nextcaller.com/documentation/ for details.'
+  s.description   = 'A Ruby wrapper around the Nextcaller API. See https://dev.nextcaller.com/documentation/ for details.'
   s.homepage      = 'http://rubygems.org/gems/nextcaller_client'
   s.license       = "MIT"
 

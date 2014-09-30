@@ -12,7 +12,6 @@ module NextcallerClient
     end
 
     def make_http_request(url, method='GET', debug=false, data={}, redirect_attempts_left = DEFAULT_REDIRECT_ATTEMPTS)
-      raise TooManyRedirects if redirect_attempts_left < 0
       uri = URI.parse(url)
       case method
         when 'GET'
@@ -32,22 +31,23 @@ module NextcallerClient
       https.use_ssl = true
 
       # https.set_debug_output($stderr) if debug              #deep debug
-      @log.debug('Request url: %s' % url)
-      @log.debug('Request body: %s' % data.to_s) if debug and method == 'POST'
+      @log.debug('Request url: %s' % url) if debug
+      @log.debug('Request body: %s' % data.to_s) if debug && (method == 'POST')
 
       response = https.start { |http| http.request(request) }
       case response
         when Net::HTTPSuccess then
           response
         when Net::HTTPRedirection then
+          raise HttpException('Too many redirects', response) if redirect_attempts_left < 0
           location = response['location']
           @log.debug("redirected to: #{location}") if debug
           make_http_request(location, data, method, debug, redirect_attempts_left - 1)
-          else
-             if 400 <= response.code < 500
-               raise HttpException('%s Client Error: %s' % [response.code, response.message], response)
-            elsif 500 <= response.code < 600
-               raise HttpException('%s Server Error: %s' % [response.code, response.message], response)
+        else
+          if 400 <= response.code < 500
+            raise HttpException('%s Client Error: %s' % [response.code, response.message], response)
+          elsif 500 <= response.code < 600
+            raise HttpException('%s Server Error: %s' % [response.code, response.message], response)
           end
       end
     end
