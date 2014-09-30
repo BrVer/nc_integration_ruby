@@ -26,7 +26,8 @@ module NextcallerClient
       request['Connection'] = 'Keep-Alive'
       request['User-Agent'] = @user_agent if @user_agent
 
-      https = Net::HTTP.new(uri.hostname, uri.port)
+      hostname =  /\A\[(.*)\]\z/ =~ uri.host ? $1 : uri.host #  ruby prior to 1.9.3 does not have 'hostname', which removes brackets from ipv6 addresses
+      https = Net::HTTP.new(hostname, uri.port)
       https.read_timeout = DEFAULT_REQUEST_TIMEOUT
       https.use_ssl = true
 
