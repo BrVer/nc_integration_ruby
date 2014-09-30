@@ -23,6 +23,7 @@ Or install it yourself as:
 
     * nokogiri
 
+
 ## Usage
 
 **Example**
@@ -70,17 +71,16 @@ Or install it yourself as:
     #   debug           -- boolean (default false)
     
     # Returns 204 response in the case of the succesfull request.
+  
     
 ##Exceptions
 
 **NextcallerClient::HttpException**
 
-Thrown in the case of 4xx or 5xx response from server, 'content' attribute contains actual response
+Thrown in the case of 4xx or 5xx response from server, or when maximum redirects count (10) is reached 
+'content' attribute contains actual response
 
-**NextcallerClient::TooManyRedirects**
 
-Thrown when maximum redirects count (10) is reached 
-    
 ##Notes
 
 It is possible to override the default response handler 
