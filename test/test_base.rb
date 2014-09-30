@@ -9,7 +9,7 @@ def prepare_url_for_test(path)
   return Regexp.new 'https://%s:%s@%s%s*' %[TEST_USERNAME, TEST_PASSWORD, NextcallerClient::BASE_URL, path]
 end
 
-class BaseTestCase < MiniTest::Unit::TestCase
+class BaseTestCase < Minitest::Test
 
   def initialize(name)
     @client = NextcallerClient::Client.new(TEST_USERNAME, TEST_PASSWORD)
