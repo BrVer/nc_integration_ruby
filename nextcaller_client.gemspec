@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "bundler", ">= 1.5"
   s.add_development_dependency "rake", ">= 10.0"
-  s.add_development_dependency "minitest", "<= 5.0"
+  s.add_development_dependency "minitest", "> 5.0.1"
   s.add_development_dependency 'webmock', ">= 1.16"
 
   s.add_runtime_dependency 'nokogiri', ">= 1.6"
