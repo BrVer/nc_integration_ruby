@@ -117,7 +117,7 @@ class PhoneTestCase < BaseTestCase
     phone = '2125558383'
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_JSON_RESULT_EXAMPLE, :status => 200)
     res = @client.get_by_phone(phone)
-    assert_not_nil(res['records'])
+    refute_nil(res['records'])
     assert_equal(res['records'][0]['email'], 'demo@nextcaller.com')
     assert_equal(res['records'][0]['first_name'], 'Jerry')
     assert_equal(res['records'][0]['last_name'], 'Seinfeld')
@@ -128,7 +128,7 @@ class PhoneTestCase < BaseTestCase
     stub_request(:get, prepare_url_for_test('records')).to_return(:body => PHONE_XML_RESULT_EXAMPLE, :status => 200)
     res = @client.get_by_phone(phone, 'xml')
     record = res.xpath('/response/records')[0].xpath('object')
-    assert_not_nil(record)
+    refute_nil(record)
     assert_equal(record.xpath('email').children[0].text, 'demo@nextcaller.com')
     assert_equal(record.xpath('first_name').children[0].text, 'Jerry')
     assert_equal(record.xpath('last_name').children[0].text, 'Seinfeld')

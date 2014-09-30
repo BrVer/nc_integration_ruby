@@ -116,7 +116,7 @@ class ProfileTestCase <BaseTestCase
     stub_request(:get, prepare_url_for_test('users/')).to_return(:body => PROFILE_XML_RESULT_EXAMPLE, :status => 200)
     res = @client.get_by_profile_id(@profile_id, 'xml')
     record =  res.xpath('/object')
-    assert_not_nil(record)
+    refute_nil(record)
     assert_equal(record.xpath('email')[0].children[0].text, 'demo@nextcaller.com')
     assert_equal(record.xpath('first_name').children[0].text, 'Jerry')
     assert_equal(record.xpath('last_name').children[0].text, 'Seinfeld')
