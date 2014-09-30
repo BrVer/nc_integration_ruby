@@ -2,6 +2,8 @@
 
 A ruby wrapper around the Nextcaller API.
 
+[![Build Status](https://travis-ci.org/BrVer/nc_integration_ruby.svg?branch=master)](https://travis-ci.org/BrVer/nc_integration_ruby)
+
 ## Installation
 
 Add this line to your application's Gemfile:
